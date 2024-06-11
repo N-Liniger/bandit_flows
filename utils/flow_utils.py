@@ -89,7 +89,7 @@ def sample_cond_prob_path(args, seq, alphabet_size):
     B, L = seq.shape
     seq_one_hot = torch.nn.functional.one_hot(seq, num_classes=alphabet_size)
     if args.mode == 'dirichlet':
-        alphas = torch.from_numpy(1 + scipy.stats.expon().rvs(size=B) * args.alpha_scale).astype(np.float32).to(seq.device)
+        alphas = torch.from_numpy((1 + scipy.stats.expon().rvs(size=B) * args.alpha_scale).astype(np.float32)).to(seq.device)
         if args.fix_alpha:
             alphas = torch.ones(B, device=seq.device) * args.fix_alpha
         alphas_ = torch.ones(B, L, alphabet_size, device=seq.device)
