@@ -11,11 +11,11 @@ from pytorch_lightning.callbacks import ModelCheckpoint
 
 if args.wandb:
     wandb.init(
-        entity="anonymized",
+        entity="noah-liniger",
+        project="bandit_flow",
+        name=args.run_name,   
+        config=args,          
         settings=wandb.Settings(start_method="fork"),
-        project="betawolf",
-        name=args.run_name,
-        config=args,
     )
 
 trainer = pl.Trainer(
